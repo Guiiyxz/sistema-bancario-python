@@ -1,0 +1,66 @@
+class Conta:
+    def __init__(self, saldo=0):
+        self.saldo = saldo
+
+    def mostrar(self):
+        print(f"\n Saldo atual: R${self.saldo:.2f}")
+
+    def depositar(self, valor):
+        if valor <= 0:
+            print("valor inválido")
+            return
+        self.saldo += valor
+        print(f"deposito de R${valor:.2f} realizado")
+
+    def sacar(self, valor):
+        if valor <= 0:
+            print("valor inválido")
+        elif valor > self.saldo:
+            print("saldo insuficiente")
+        else:
+            self.saldo -= valor
+            print(f"saque de R${valor:.2f} realizado")
+
+
+def menu():
+    print("\n====== MENU ======")
+    print("1 - Depositar")
+    print("2 - Sacar")
+    print("3 - Mostrar saldo")
+    print("4 - Sair")
+
+
+def main():
+    conta = Conta(300)
+
+    while True:
+        menu()
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            try:
+                valor = float(input("Digite o valor: "))
+                conta.depositar(valor)
+            except:
+                print("entrada inválida")
+
+        elif opcao == "2":
+            try:
+                valor = float(input("Digite o valor: "))
+                conta.sacar(valor)
+            except:
+                print("entrada inválida")
+
+        elif opcao == "3":
+            conta.mostrar()
+
+        elif opcao == "4":
+            print("encerrando programa...")
+            break
+
+        else:
+            print("opção inválida")
+
+
+if __name__ == "__main__":
+    main()
